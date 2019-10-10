@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Form</title>
+    <div th:replace="base :: head"></div>
+</head>
+<body>
+<nav th:replace="base :: navlinks"></nav>
+<h1>Car Form</h1>
+
+<form action="#" th:action="@{process_car}" th:object="${car}" method="post">
+    <input type="hidden" th:field="*{carID}">
+    <select name="categorie" th:field="*{categorie}">
+        <option th:each="c : ${categories}"
+                th:value="${c.categorieID}"
+                th:text="${c.categorieName}">
+        </option>
+    </select>
+    <br>
+    Name: <input type="text" th:field="*{carName}"> <br>
+    <span th:if="${#fields.hasErrors('carName')}" th:errors="*{carName}"></span>
+    Make: <input type="text" th:field="*{carMake}"> <br>
+    <span th:if="${#fields.hasErrors('carMake')}" th:errors="*{carMake}"></span>
+    Model: <input type="text" th:field="*{carModel}"> <br>
+    <span th:if="${#fields.hasErrors('carModel')}" th:errors="*{carModel}"></span>
+    Price: <input type="number" step=".01" th:field="*{price}"> <br>
+    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+    <input type="submit" value="Submit">
+</form>
+<div th:replace="base :: bootstrapScripts"></div>
+</body>
+</html>
