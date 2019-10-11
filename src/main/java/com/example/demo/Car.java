@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Car {
@@ -9,6 +10,7 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long carID;
 
+    @Size(min=3)
     private String carName, carMake, carModel, price;
 
     @ManyToOne()

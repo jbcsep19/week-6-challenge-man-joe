@@ -67,4 +67,16 @@ public class HomeController {
         return "index";
     }
 
+    @RequestMapping("/update_car/{id}")
+    public String updateCar(@PathVariable("id") long id, Model model){
+        model.addAttribute("car", carRepository.findById(id).get());
+        return "carform";
+    }
+
+    @RequestMapping("/delete_car/{id}")
+    public String delCar(@PathVariable("id") long id){
+        carRepository.deleteById(id);
+        return "index";
+    }
+
 }

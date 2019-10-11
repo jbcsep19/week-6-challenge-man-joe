@@ -7,7 +7,7 @@
 </head>
 <body>
 <nav th:replace="base :: navlinks"></nav>
-
+<br>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-4">
@@ -32,7 +32,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-4">
+        <div class="col-6">
             <table class="table">
                 <thead class="thead-light">
                 <tr>
@@ -41,6 +41,7 @@
                     <th scope="col">Make</th>
                     <th scope="col">Model</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -50,6 +51,10 @@
                     <td th:text="${c.carMake}"></td>
                     <td th:text="${c.carModel}"></td>
                     <td th:text="${c.price}"></td>
+                    <td>
+                        <a th:href="@{update_car/{id}(id=${c.carID})}">Update</a>
+                        <a th:href="@{delete_car/{id}(id=${c.carID})}">Delete</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

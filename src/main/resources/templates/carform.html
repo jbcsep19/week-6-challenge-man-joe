@@ -7,27 +7,67 @@
 </head>
 <body>
 <nav th:replace="base :: navlinks"></nav>
-<h1>Car Form</h1>
+<br>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Car Form</h1>
+        <form action="#" th:action="@{process_car}" th:object="${car}" method="post">
+            <input type="hidden" th:field="*{carID}">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="categoriesFormControl">Categories</label>
+                    <select multiple class="form-control" id="categoriesFormControl" name="categorie" th:field="*{categorie}">
+                        <option th:each="c : ${categories}"
+                                th:value="${c.categorieID}"
+                                th:text="${c.categorieName}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="carNameFormControl">Name</label>
+                    <input type="text" class="form-control" id="carNameFormControl" th:field="*{carName}">
+                    <span th:if="${#fields.hasErrors('carName')}" th:errors="*{carName}"></span>
+                </div>
+            </div>
 
-<form action="#" th:action="@{process_car}" th:object="${car}" method="post">
-    <input type="hidden" th:field="*{carID}">
-    <select name="categorie" th:field="*{categorie}">
-        <option th:each="c : ${categories}"
-                th:value="${c.categorieID}"
-                th:text="${c.categorieName}">
-        </option>
-    </select>
-    <br>
-    Name: <input type="text" th:field="*{carName}"> <br>
-    <span th:if="${#fields.hasErrors('carName')}" th:errors="*{carName}"></span>
-    Make: <input type="text" th:field="*{carMake}"> <br>
-    <span th:if="${#fields.hasErrors('carMake')}" th:errors="*{carMake}"></span>
-    Model: <input type="text" th:field="*{carModel}"> <br>
-    <span th:if="${#fields.hasErrors('carModel')}" th:errors="*{carModel}"></span>
-    Price: <input type="number" step=".01" th:field="*{price}"> <br>
-    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
-    <input type="submit" value="Submit">
-</form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="carMakeFormControl">Make</label>
+                    <input type="text" class="form-control" id="carMakeFormControl" th:field="*{carMake}">
+                    <span th:if="${#fields.hasErrors('carMake')}" th:errors="*{carMake}"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="carModelFormControl">Model</label>
+                    <input type="text" class="form-control" id="carModelFormControl" th:field="*{carModel}">
+                    <span th:if="${#fields.hasErrors('carModel')}" th:errors="*{carModel}"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="priceFormControl">Price</label>
+                    <input type="number" step=".01" class="form-control" id="priceFormControl" th:field="*{price}">
+                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <!--    <br>-->
+            <!--    Name:  <br>-->
+            <!--    Make: <input type="text" th:field="*{carMake}"> <br>-->
+            <!--    <span th:if="${#fields.hasErrors('carMake')}" th:errors="*{carMake}"></span>-->
+            <!--    Model: <input type="text" th:field="*{carModel}"> <br>-->
+            <!--    <span th:if="${#fields.hasErrors('carModel')}" th:errors="*{carModel}"></span>-->
+            <!--    Price: <input type="number" step=".01" th:field="*{price}"> <br>-->
+            <!--    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>-->
+            <!--    <input type="submit" value="Submit">-->
+        </form>
+    </div>
+</div>
+
+
+
 <div th:replace="base :: bootstrapScripts"></div>
 </body>
 </html>

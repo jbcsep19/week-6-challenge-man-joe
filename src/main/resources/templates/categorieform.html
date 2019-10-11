@@ -9,12 +9,27 @@
 <nav th:replace="base :: navlinks"></nav>
 <h1>Category Form</h1>
 
-<form action="#" th:action="@{process_categorie}" th:object="${categorie}" method="post">
-    <input type="hidden" th:field="*{categorieID}">
-    Category: <input type="text" th:field="*{categorieName}"> <br>
-    <span th:if="${#fields.hasErrors('categorieName')}" th:errors="*{categorieName}"></span>
-    <input type="submit" value="Submit">
-</form>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4">Category Form</h1>
+        <form action="#" th:action="@{process_categorie}" th:object="${categorie}" method="post">
+            <input type="hidden" th:field="*{categorieID}">
+            <div class="form-row">
+                <div class="form-group col-sm-12">
+                    <label for="categoryFormControl">Category</label>
+                    <input type="text" class="form-control" id="categoryFormControl" th:field="*{categorieName}">
+                    <span th:if="${#fields.hasErrors('categorieName')}" th:errors="*{categorieName}"></span>
+                </div>
+            </div>
+<!--            Category: <input type="text" th:field="*{categorieName}"> <br>-->
+<!--            <span th:if="${#fields.hasErrors('categorieName')}" th:errors="*{categorieName}"></span>-->
+<!--            <input type="submit" value="Submit">-->
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+
 
 <div th:replace="base :: bootstrapScripts"></div>
 </body>
