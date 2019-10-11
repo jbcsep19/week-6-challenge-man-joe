@@ -4,12 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HomeController {
@@ -34,9 +29,7 @@ public class HomeController {
     }
 
     @PostMapping("/process_car")
-    public String processCarForm(@Valid Car car, BindingResult result){
-        if(result.hasErrors())
-            return "carform";
+    public String processCarForm(@ModelAttribute Car car, BindingResult result){
         carRepository.save(car);
         return "redirect:/";
     }
@@ -48,9 +41,7 @@ public class HomeController {
     }
 
     @PostMapping("/process_categorie")
-    public String processCategorieForm(@Valid Categorie categorie, BindingResult result){
-        if(result.hasErrors())
-            return "categorieform";
+    public String processCategorieForm(@ModelAttribute Categorie categorie, BindingResult result){
         categorieRepository.save(categorie);
         return "redirect:/";
     }
@@ -61,22 +52,30 @@ public class HomeController {
         return "categorieform";
     }
 
+    @RequestMapping("/delete/{id}")
+    public String deleteCar(@PathVariable("id") long id){
+        carRepository.deleteById(id);
+        System.out.println("ID = " + id + carRepository.existsById(id));
+        return "redirect:/";
+    }
+
     @RequestMapping("/delete_categorie/{id}")
     public String delCategorie(@PathVariable("id") long id){
         categorieRepository.deleteById(id);
-        return "index";
+        return "redirect:/";
     }
 
     @RequestMapping("/update_car/{id}")
     public String updateCar(@PathVariable("id") long id, Model model){
+        model.addAttribute("categories" , categorieRepository.findAll());
         model.addAttribute("car", carRepository.findById(id).get());
         return "carform";
     }
 
-    @RequestMapping("/delete_car/{id}")
-    public String delCar(@PathVariable("id") long id){
-        carRepository.deleteById(id);
-        return "index";
+    @RequestMapping("/detail_car/{id}")
+    public String showCar(@PathVariable("id") long id, Model model){
+        model.addAttribute("car", carRepository.findById(id).get());
+        return "cardetail";
     }
 
 }

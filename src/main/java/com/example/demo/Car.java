@@ -1,23 +1,31 @@
 package com.example.demo;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 @Entity
 public class Car {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long carID;
 
-    @Size(min=3)
-    private String carName, carMake, carModel, price;
-
-    @ManyToOne()
-    @JoinColumn(name="categorieID")
+    @ManyToOne(fetch = FetchType.EAGER)
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name="categorieID")
     private Categorie categorie;
 
+    private String carName, carMake, carModel, price;
+
     public Car() {
+    }
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
 
     public long getCarID() {
@@ -60,11 +68,4 @@ public class Car {
         this.price = price;
     }
 
-    public Categorie getCategorie() {
-        return categorie;
-    }
-
-    public void setCategorie(Categorie categorie) {
-        this.categorie = categorie;
-    }
 }

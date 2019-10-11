@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <title>Car Form</title>
     <div th:replace="base :: head"></div>
+    <style>
+        body{
+            background-image: url("https://www.escrow.com/build/images/sections/guides/buying-a-car.jpg");
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
 <body>
 <nav th:replace="base :: navlinks"></nav>
@@ -11,7 +19,7 @@
 <div class="container">
     <div class="jumbotron">
         <h1 class="display-4">Car Form</h1>
-        <form action="#" th:action="@{process_car}" th:object="${car}" method="post">
+        <form action="#" th:action="@{/process_car}" th:object="${car}" method="post">
             <input type="hidden" th:field="*{carID}">
             <div class="form-row">
                 <div class="form-group col-md-12">
@@ -28,7 +36,7 @@
                 <div class="form-group col-md-12">
                     <label for="carNameFormControl">Name</label>
                     <input type="text" class="form-control" id="carNameFormControl" th:field="*{carName}">
-                    <span th:if="${#fields.hasErrors('carName')}" th:errors="*{carName}"></span>
+<!--                    <span th:if="${#fields.hasErrors('carName')}" th:errors="*{carName}"></span>-->
                 </div>
             </div>
 
@@ -36,19 +44,19 @@
                 <div class="form-group col-md-6">
                     <label for="carMakeFormControl">Make</label>
                     <input type="text" class="form-control" id="carMakeFormControl" th:field="*{carMake}">
-                    <span th:if="${#fields.hasErrors('carMake')}" th:errors="*{carMake}"></span>
+<!--                    <span th:if="${#fields.hasErrors('carMake')}" th:errors="*{carMake}"></span>-->
                 </div>
                 <div class="form-group col-md-6">
                     <label for="carModelFormControl">Model</label>
                     <input type="text" class="form-control" id="carModelFormControl" th:field="*{carModel}">
-                    <span th:if="${#fields.hasErrors('carModel')}" th:errors="*{carModel}"></span>
+<!--                    <span th:if="${#fields.hasErrors('carModel')}" th:errors="*{carModel}"></span>-->
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-2">
                     <label for="priceFormControl">Price</label>
                     <input type="number" step=".01" class="form-control" id="priceFormControl" th:field="*{price}">
-                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+<!--                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>-->
                 </div>
             </div>
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Details</title>
+    <div th:replace="base :: head"></div>
+    <style>
+        body{
+            background-image: url("https://www.escrow.com/build/images/sections/guides/buying-a-car.jpg");
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+<nav th:replace="base :: navlinks"></nav>
+<br>
+<div class="card mx-auto" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title" th:text="${car.carName}"></h5>
+        <h6 class="card-subtitle mb-2 text-muted" th:text="${car.categorie.categorieName}"></h6>
+        <p class="card-text" th:text="${'Make: ' + car.carMake}"></p>
+        <p class="card-text" th:text="${'Model: ' + car.carModel}"></p>
+        <p class="card-text" th:text="${'Price: ' + car.price}"></p>
+        <a class="btn btn-success btn-sm" role="button" th:href="@{/update_car/{id}(id=${car.carID})}">Update</a>
+        <a class="btn btn-danger btn-sm" role="button"  th:href="@{/delete/{id}(id=${car.carID})}">Delete</a>
+    </div>
+</div>
+
+<div th:replace="base :: bootstrapScripts"></div>
+</body>
+</html>

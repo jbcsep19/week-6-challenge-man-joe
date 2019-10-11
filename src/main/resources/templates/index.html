@@ -8,10 +8,10 @@
 <body>
 <nav th:replace="base :: navlinks"></nav>
 <br>
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-4">
-            <table class="table">
+        <div class="col-5">
+            <table class="table table-hover">
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col">Category ID</th>
@@ -20,20 +20,22 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="c : ${categories}">
+                <tr class="table-secondary" th:each="c : ${categories}">
                     <td th:text="${c.categorieID}"></td>
                     <td th:text="${c.categorieName}"></td>
                     <td>
-                        <a th:href="@{update_categorie/{id}(id=${c.categorieID})}">Update</a>
+                        <a class="btn btn-success btn-sm" role="button" th:href="@{/update_categorie/{id}(id=${c.categorieID})}">Update</a>
+<!--                        <a th:href="@{update_categorie/{id}(id=${c.categorieID})}">Update</a>-->
 <!--                        <a th:href="@{detail_employee/{id}(id=${employee.employeeID})}">Details</a>-->
-                        <a th:href="@{delete_categorie/{id}(id=${c.categorieID})}">Delete</a>
+                        <a class="btn btn-danger btn-sm" role="button" th:href="@{/delete_categorie/{id}(id=${c.categorieID})}">Delete</a>
+<!--                        <a th:href="@{delete_categorie/{id}(id=${c.categorieID})}">Delete</a>-->
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <div class="col-6">
-            <table class="table">
+        <div class="col-7">
+            <table class="table table-hover">
                 <thead class="thead-light">
                 <tr>
                     <th scope="col">Car ID</th>
@@ -45,15 +47,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="c : ${cars}">
+                <tr class="bg-dark text-white" th:each="c : ${cars}">
                     <td th:text="${c.carID}"></td>
                     <td th:text="${c.carName}"></td>
                     <td th:text="${c.carMake}"></td>
                     <td th:text="${c.carModel}"></td>
                     <td th:text="${c.price}"></td>
                     <td>
-                        <a th:href="@{update_car/{id}(id=${c.carID})}">Update</a>
-                        <a th:href="@{delete_car/{id}(id=${c.carID})}">Delete</a>
+<!--                        <a th:href="@{update_car/{id}(id=${c.carID})}">Update</a>-->
+                        <a class="btn btn-success btn-sm" role="button" th:href="@{/update_car/{id}(id=${c.carID})}">Update</a>
+                        <a class="btn btn-info btn-sm" role="button"   th:href="@{/detail_car/{id}(id=${c.carID})}">Details</a>
+                        <a class="btn btn-danger btn-sm" role="button" th:href="@{/delete/{id}(id=${c.carID})}">Delete</a>
+<!--                        <a th:href="@{/delete_car/{id}(id=${c.carID})}">Delete</a>-->
                     </td>
                 </tr>
                 </tbody>
