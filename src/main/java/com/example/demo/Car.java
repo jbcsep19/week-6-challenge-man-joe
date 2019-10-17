@@ -10,7 +10,7 @@ public class Car {
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long carID;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
 //    @OneToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name="categorieID")
     private Categorie categorie;

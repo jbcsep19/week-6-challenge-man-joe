@@ -55,6 +55,7 @@ public class HomeController {
     @RequestMapping("/delete/{id}")
     public String deleteCar(@PathVariable("id") long id){
         carRepository.deleteById(id);
+//        categorieRepository.deleteById(id);
         System.out.println("ID = " + id + carRepository.existsById(id));
         return "redirect:/";
     }
